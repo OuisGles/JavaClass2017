@@ -1,0 +1,121 @@
+/*Code by Louis Iglesias
+ * Bank account class that allows the user 
+ * to modify their account.
+ */
+
+import java.util.Scanner;
+import java.math.BigDecimal;
+
+class account1 {
+	
+	
+
+	int resetAccount;
+	int negativeBalance;
+	int balance;
+	int amount;
+	int getBalance;
+	int subtractFromAccount;
+	int addToAccout;
+
+	int getBalance() {
+		return balance;
+	}
+
+	int subtractFromAccount(int amount) {
+		balance = balance - amount;
+		return balance;
+	}
+	
+	
+
+	int resetAccount() {
+		balance = 0;
+		return balance;
+	}
+
+	boolean negativeBalance() { //boolean to test negativity
+		if ((balance < 0))
+			return true;
+		else
+			return false;
+	}
+
+	int addToAccount(int amount) {
+		balance = balance + amount;
+		return balance;
+	}
+
+}
+
+public class bankaccount1 {
+
+	public static void main(String[] args) {
+
+		account1 bank1 = new account1(); //calling upon the class account1
+
+		int amount, curval, x;
+		x = 0;
+		curval = 0;
+
+		while (x != 9) {//runs the program until the user keys 9
+
+			System.out.println("1. Reset Account");
+			System.out.println("2. Display Balance");
+			System.out.println("3. Add Funds");
+			System.out.println("4. Subtract Funds");
+			System.out.println("9. Exit");
+
+			Scanner sc = new Scanner(System.in);
+			x = sc.nextInt();
+
+			switch (x) { //switch statement for the users input into the scanner
+			case 1:
+				curval = bank1.resetAccount(); //curval stores the changes in the account
+				System.out.println("Your bank value is now: $" + curval);
+				break;
+			case 2:
+				curval = bank1.getBalance();
+				System.out.println("Your balance is: $" + curval);
+				if (bank1.negativeBalance() == true) { //tests the value to see if it is negative every time.
+
+					System.out.println("Warning funds are negative");
+				}
+				break;
+			case 3:
+				System.out.println("How much would you like to add?");
+				Scanner add = new Scanner(System.in);
+				amount = add.nextInt();
+				curval = bank1.addToAccount(amount); //the input is stored to curval
+				System.out.println("Your bank value is now: $" + curval);
+				amount = 0; //amount is always set to 0 so the previous input doesnt track.
+				if (bank1.negativeBalance() == true) {
+
+					System.out.println("Warning funds are negative");
+				}
+				break;
+			case 4:
+				System.out.println("How much would you like to subtract?");
+				Scanner subtract = new Scanner(System.in);
+				amount = subtract.nextInt();
+				curval = bank1.subtractFromAccount(amount);
+				System.out.println("Your bank value is now: $" + curval);
+				amount = 0;
+				if (bank1.negativeBalance() == true) {
+					System.out.println("Warning funds are negative");
+				}
+				break;
+			case 9:
+				System.out.println("You have chosen to exit");
+				break;
+			default:
+				System.out.println("You have entered an invalid number");
+				break;
+
+			}
+
+		}
+
+	}
+
+}
