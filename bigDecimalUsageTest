@@ -1,0 +1,33 @@
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+public class Example {
+
+	public static void main(String[] args) {
+		
+		double a = 0.03;
+		double b = 0.02;
+		double c = a-b;
+		
+		System.out.println("a is currently: " + a);
+		System.out.println("b is currently: " + b);
+		System.out.println("The result of the subtraction of a-b is: " + c);
+		System.out.println("");
+		
+		BigDecimal bd1 = new BigDecimal(3.01);
+		BigDecimal bd2 = new BigDecimal(1.01);
+		BigDecimal bd3 = bd1.subtract(bd2);
+		
+		System.out.println("bd1 is: " + bd1);
+		System.out.println("bd2 is: " + bd2);
+		System.out.println("The result of the subtraction of bd1-bd2 is: " + bd3);
+
+		BigDecimal subtracted = bd1.subtract(bd2);
+		
+		BigDecimal rounded1 = subtracted.round(new MathContext(2, RoundingMode.HALF_UP));
+		
+		System.out.println("The result of rounding bd1-bd2 is: " + rounded1);
+		
+	}
+
+}
